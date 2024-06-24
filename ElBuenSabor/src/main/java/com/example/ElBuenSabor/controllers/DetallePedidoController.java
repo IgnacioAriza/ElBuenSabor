@@ -21,11 +21,11 @@ public class DetallePedidoController extends BaseController<DetallePedido, Long>
     public DetallePedidoController(DetallePedidoService detallePedidoService){
         super(detallePedidoService);
     }
-/*
+
     @GetMapping("/pedido/{id}")
     public ResponseEntity<List<DetallePedido>> listarPorPedido(@PathVariable Long idPedido) throws Exception {
         List<DetallePedido> detallePedidos = detallePedidoService.listarPorPedido(idPedido);
         return ResponseEntity.ok(detallePedidos);
     }
-*/
+
 }

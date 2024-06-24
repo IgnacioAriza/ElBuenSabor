@@ -24,7 +24,7 @@ public class Pedido extends Base{
     @Column(name = "hora_estimada_finalizacion")
     private LocalTime horaEstimadaFinalizacion;
     @Column(name = "total")
-    private Double total; // porque lo tenia definido...?
+    private Double total = 0.0; // porque lo tenia definido...?
     @Column(name = "total_costo")
     private Double totalCosto;
     @Column(name = "estado")
@@ -48,4 +48,6 @@ public class Pedido extends Base{
     @JoinColumn(name = "sucursal_id")
     private Sucursal sucursal;
 
+    @OneToOne
+    private Factura factura;
 }

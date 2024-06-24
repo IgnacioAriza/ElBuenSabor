@@ -1,17 +1,18 @@
 package com.example.ElBuenSabor.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 //@MappedSuperclass
 @Entity
-@Table(name = "articulos")
-@Data
+//@Table(name = "articulos")
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
@@ -21,16 +22,31 @@ public abstract class Articulo extends Base{
     protected String denominación;
     protected Double precioVenta;
 
-    @ManyToOne
-    @JoinColumn(name = "unidad_medida_id", referencedColumnName = "id")
-    private UnidadMedida unidadMedida;
+    @OneToMany
+    @Builder.Default
+    protected Set<ImagenArticulo> imagenArticulo = new HashSet<>();
+
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     protected Categoria categoria;
 
-    @OneToMany(mappedBy = "articulo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ImagenArticulo> imagenesArticulo;
+    @ManyToOne
+    @JoinColumn(name = "unidad_medida_id")
+    protected UnidadMedida unidadMedida;
+/*
+    @ManyToOne
+    @JoinColumn(name = "unidad_medida_id")
+    protected UnidadMedida unidadMedida;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    protected Categoria categoria;
+
+ */
+
+    //@OneToMany(mappedBy = "articulo", cascade = CascadeType.ALL, orphanRemoval = true)
+    //private List<ImagenArticulo> imagenesArticulo;
 
 
 }

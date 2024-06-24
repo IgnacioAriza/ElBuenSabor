@@ -36,6 +36,10 @@ public class Cliente extends Base {
     private Rol rol;
 
     @ManyToMany
+    @JoinTable(name = "cliente_domicilio",
+            joinColumns = @JoinColumn(name = "cliente_id"),
+            inverseJoinColumns = @JoinColumn(name = "domicilio_id"))
+    @Builder.Default
     private Set<Domicilio> domicilios = new HashSet<>();
 
     @OneToOne

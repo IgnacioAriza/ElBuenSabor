@@ -59,6 +59,12 @@ public class ElBuenSaborApplication {
 	private ImagenClienteRepository imagenClienteRepository;
 	@Autowired
 	private UsuarioClienteRepository usuarioClienteRepository;
+	@Autowired
+	private ImagenPromocionRepository imagenPromocionRepository;
+	@Autowired
+	private ImagenArticuloRepository imagenArticuloRepository;
+	@Autowired
+	private FacturaRepository facturaRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ElBuenSaborApplication.class, args);
@@ -87,50 +93,53 @@ public class ElBuenSaborApplication {
 						   ImagenEmpleadoRepository imagenEmpleadoRepository,
 						   UsuarioEmpleadoRepository usuarioEmpleadoRepository,
 						   ImagenClienteRepository imagenClienteRepository,
-						   UsuarioClienteRepository usuarioClienteRepository){
+						   UsuarioClienteRepository usuarioClienteRepository,
+						   ImagenPromocionRepository imagenPromocionRepository,
+						   ImagenArticuloRepository imagenArticuloRepository,
+						   FacturaRepository facturaRepository){
 		return args -> {
 
 			Pais pais1 = Pais.builder()
-					.nombre("Pais 1")
+					.nombre("Inglaterra")
 					.build();
 			paisRepository.save(pais1);
 
 			Provincia prov1 = Provincia.builder()
-					.nombre("Provincia 1")
+					.nombre("Londres")
 					.pais(pais1)
 					.build();
 			provinciaRepository.save(prov1);
 
 			Localidad loc1 = Localidad.builder()
-					.nombre("Localidad 1")
+					.nombre("Kennington")
 					.provincia(prov1)
 					.build();
 			localidadRepository.save(loc1);
 
 			Domicilio dom1 = Domicilio.builder()
-					.calle("Calle 1")
-					.numero(1234)
+					.calle("Harleyford Road")
+					.numero(19)
 					.cp(1234)
 					.localidad(loc1)
 					.build();
 			domicilioRepository.save(dom1);
 			Domicilio dom2 = Domicilio.builder()
-					.calle("Calle 2")
-					.numero(5678)
+					.calle("Atlantic Road")
+					.numero(389)
 					.cp(5678)
 					.localidad(loc1)
 					.build();
 			domicilioRepository.save(dom2);
 
 			Empresa empr1 = Empresa.builder()
-					.razonSocial("Empresa S.A")
-					.nombre("Empresa 1")
+					.razonSocial("Magnus S.A")
+					.nombre("The Magnus Institute")
 					.cuil(12334555)
 					.build();
 			empresaRepository.save(empr1);
 
 			Sucursal suc1 = Sucursal.builder()
-					.nombre("Sucursal 1")
+					.nombre("The Archives")
 					.casaMatriz(Boolean.FALSE)
 					.domicilio(dom1)
 					.horarioApertura(LocalTime.of(8,30))
@@ -226,12 +235,12 @@ public class ElBuenSaborApplication {
 
 			Categoria subCat2 = Categoria.builder()
 					.denominacion("Subcategoria 2")
-					//.categoriaPadre(cat1)
+					.categoriaPadre(cat1)
 					.build();
 			categoriaRepository.save(subCat2);
 
-			//cat1.getSubcategorias().add(subCat1);
-			//cat1.getSubcategorias().add(subCat2);
+			cat1.getSubcategorias().add(subCat1);
+			cat1.getSubcategorias().add(subCat2);
 			categoriaRepository.save(cat1);
 
 			suc1.getCategorias().add(cat1);
@@ -245,6 +254,16 @@ public class ElBuenSaborApplication {
 					.denominacion("Imangen promo 2")
 					.build();
 			imagenRepository.save(imgProm2);
+*/
+
+			ImagenPromocion imp1 = ImagenPromocion.builder()
+					.denominacion("Imagen 3")
+					.build();
+			imagenPromocionRepository.save(imp1);
+			ImagenPromocion imp2 = ImagenPromocion.builder()
+					.denominacion("Imagen 4")
+					.build();
+			imagenPromocionRepository.save(imp2);
 
 			Promocion prom1 = Promocion.builder()
 					.denominacion("Promocion 1")
@@ -256,7 +275,7 @@ public class ElBuenSaborApplication {
 					.precioPromocional(2500.5)
 					.tipoPromocion(TipoPromocion.HAPPYHOUR)
 					.build();
-			prom1.getImagenesPromocion().add(imgProm1);
+			prom1.getImagenPromocion().add(imp1);
 			promocionRepository.save(prom1);
 			Promocion prom2 = Promocion.builder()
 					.denominacion("Promocion 2")
@@ -268,17 +287,32 @@ public class ElBuenSaborApplication {
 					.precioPromocional(3000.0)
 					.tipoPromocion(TipoPromocion.HAPPYHOUR)
 					.build();
-			prom2.getImagenesPromocion().add(imgProm2);
+			prom2.getImagenPromocion().add(imp2);
 			promocionRepository.save(prom2);
 
 			suc1.getPromociones().add(prom1);
 			suc1.getPromociones().add(prom2);
 			sucursalRepository.save(suc1);
-*/
+
+			PromocionDetalle prd1 = PromocionDetalle.builder()
+					.cantidad(320)
+					.build();
+			promocionDetalleRepository.save(prd1);
+
 			UnidadMedida unMedida = UnidadMedida.builder()
 					.denominacion("Unidad de medida 1")
 					.build();
 			unidadMedidaRepository.save(unMedida);
+
+			ImagenArticulo ima1 = ImagenArticulo.builder()
+					.denominacion("Imagen Articulo 1")
+					.build();
+			imagenArticuloRepository.save(ima1);
+
+			ImagenArticulo ima2 = ImagenArticulo.builder()
+					.denominacion("Imagen Articulo 2")
+					.build();
+			imagenArticuloRepository.save(ima2);
 
 			ArticuloInsumo artInsumo1 = ArticuloInsumo.builder()
 					//.denominacion("Articulo insumo 1")
@@ -290,7 +324,7 @@ public class ElBuenSaborApplication {
 					.categoria(cat1)
 					.unidadMedida(unMedida)
 					.build();
-			//artInsumo1.getImagenesArticulos().add(img1);
+			artInsumo1.getImagenArticulo().add(ima1);
 			articuloInsumoRepository.save(artInsumo1);
 
 			ArticuloManufacturado artManuf1 = ArticuloManufacturado.builder()
@@ -302,7 +336,7 @@ public class ElBuenSaborApplication {
 					.preparacion("Preparacion art manuf 1")
 					.unidadMedida(unMedida)
 					.build();
-			//artManuf1.getImagenesArticulos().add(img2);
+			artManuf1.getImagenArticulo().add(ima2);
 			articuloManufacturadoRepository.save(artManuf1);
 
 			ArticuloManufacturadoDetalle artManufDet1 = ArticuloManufacturadoDetalle.builder()
@@ -311,6 +345,17 @@ public class ElBuenSaborApplication {
 					.articuloManufacturado(artManuf1)
 					.build();
 			articuloManufacturadoDetalleRepository.save(artManufDet1);
+
+			Factura fac1 = Factura.builder()
+					.fechaFacturacion(LocalDate.of(2020,10,31))
+					.mpPaymentId(140)
+					.mpMerchantOrderId(680)
+					.mpPreferenceId("Preference Id 1")
+					.mpPaymentType("Payment Type 1")
+					.formaPago(FormaPago.EFECTIVO)
+					.totalVenta(180.5)
+					.build();
+			facturaRepository.save(fac1);
 
 		};
 	}

@@ -16,8 +16,7 @@ public class CategoriaController extends BaseController<Categoria, Long> {
     public CategoriaController(CategoriaService categoriaService){
         super(categoriaService);
     }
-}
-/*
+
     @Autowired
     private CategoriaService categoriaService;
 
@@ -27,6 +26,12 @@ public class CategoriaController extends BaseController<Categoria, Long> {
         return Optional.ofNullable(catPadre);
     }
 
+    /*@GetMapping("/subcategoria/{id_CP}")
+    public List<Categoria> listarSubcategorias(@PathVariable Long id_CP) throws Exception {
+        List<Categoria> subcategorias = categoriaService.listarSubcategorias(id_CP);
+        return subcategorias;
+    }*/
+
     @GetMapping("/categoriaPadre/{id}")
     public ResponseEntity<List<Categoria>> listarPorCategoriaPadre(@PathVariable Long id) throws Exception {
         List<Categoria> categorias = categoriaService.listarPorCategoriaPadre(id);
@@ -34,4 +39,3 @@ public class CategoriaController extends BaseController<Categoria, Long> {
     }
 
 }
-*/

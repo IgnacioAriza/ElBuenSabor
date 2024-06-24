@@ -37,4 +37,8 @@ public class Promocion extends Base {
     @Column(name = "tipo_promocion")
     private TipoPromocion tipoPromocion;
 
+    @OneToMany
+    @Builder.Default
+    private Set<ImagenPromocion> imagenPromocion = new HashSet<>();
+
 }
