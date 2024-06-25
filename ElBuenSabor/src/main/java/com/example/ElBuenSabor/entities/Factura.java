@@ -2,6 +2,7 @@ package com.example.ElBuenSabor.entities;
 
 import com.example.ElBuenSabor.entities.enums.FormaPago;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,4 +27,7 @@ public class Factura extends Base{
     private String mpPaymentType;
     private FormaPago formaPago;
     private Double totalVenta;
+
+    //@OneToOne
+    //private Pedido pedido;
 }

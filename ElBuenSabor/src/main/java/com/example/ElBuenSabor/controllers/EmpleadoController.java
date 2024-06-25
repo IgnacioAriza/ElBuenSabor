@@ -15,4 +15,12 @@ public class EmpleadoController extends BaseController<Empleado, Long> {
         super(empleadoService);
     }
 
+    @Autowired
+    private EmpleadoService empleadoService;
+
+    @GetMapping("/sucursales/{sucursalesId}")
+    public List<Empleado> getEmpleadoBySucursalId(@PathVariable Long sucursalesId) throws Exception{
+        return empleadoService.getEmpleadoBySucursalId(sucursalesId);
+    }
+
 }

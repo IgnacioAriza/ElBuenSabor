@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.Month;
 
 @SpringBootApplication
 public class ElBuenSaborApplication {
@@ -167,8 +166,8 @@ public class ElBuenSaborApplication {
 			em1.setTelefono("5668800");
 			em1.setEmail("watcher@gmail.com");
 			em1.setFechaNacimiento(LocalDate.of(1988,10,31));
-			em1.setImagenEmpleado(ime1);//test con joincolumn
-			em1.setUsuarioEmpleado(use1);//test sin joincolumn
+			em1.setImagenEmpleado(ime1);
+			em1.setUsuarioEmpleado(use1);
 			em1.setRol(Rol.ADMINISTRADOR);
 			empleadoRepository.save(em1);
 
@@ -244,17 +243,6 @@ public class ElBuenSaborApplication {
 			categoriaRepository.save(cat1);
 
 			suc1.getCategorias().add(cat1);
-			//sucursalRepository.save(suc1);
-/*
-			Imagen imgProm1 = Imagen.builder()
-					.denominacion("Imangen promo 1")
-					.build();
-			imagenRepository.save(imgProm1);
-			Imagen imgProm2 = Imagen.builder()
-					.denominacion("Imangen promo 2")
-					.build();
-			imagenRepository.save(imgProm2);
-*/
 
 			ImagenPromocion imp1 = ImagenPromocion.builder()
 					.denominacion("Imagen 3")
@@ -315,7 +303,6 @@ public class ElBuenSaborApplication {
 			imagenArticuloRepository.save(ima2);
 
 			ArticuloInsumo artInsumo1 = ArticuloInsumo.builder()
-					//.denominacion("Articulo insumo 1")
 					.precioVenta(230.0)
 					.precioCompra(460.5)
 					.stockActual(36)
@@ -328,7 +315,6 @@ public class ElBuenSaborApplication {
 			articuloInsumoRepository.save(artInsumo1);
 
 			ArticuloManufacturado artManuf1 = ArticuloManufacturado.builder()
-					//.denominacion("Articulo Manufacturado 1")
 					.categoria(cat1)
 					.precioVenta(140.5)
 					.descripcion("Descripcion art manuf 1")

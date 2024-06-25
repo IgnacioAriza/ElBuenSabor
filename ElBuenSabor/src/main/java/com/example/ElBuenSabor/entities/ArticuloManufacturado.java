@@ -24,7 +24,6 @@ public class ArticuloManufacturado extends Articulo{
     @Column(name = "preparacion")
     private String preparacion;
 
-    //sera que esto es de bidireccional?
     //@OneToMany(mappedBy = "articuloManufacturado", cascade = CascadeType.ALL, orphanRemoval = true)
     //@Builder.Default
     //private List<ArticuloManufacturadoDetalle> articulosManufacturadosDetalle = new ArrayList<ArticuloManufacturadoDetalle>();

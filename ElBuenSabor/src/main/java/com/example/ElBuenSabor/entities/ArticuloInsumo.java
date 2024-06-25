@@ -14,7 +14,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@SuperBuilder //o @Builder
+@SuperBuilder //o @Builder?
 public class ArticuloInsumo extends Articulo{
     @Column(name = "precio_compra")
     private Double precioCompra;

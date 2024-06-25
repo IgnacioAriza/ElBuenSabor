@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder //o super
+@Builder
 public class ArticuloManufacturadoDetalle extends Base{
     @Column(name = "cantidad")
     private Integer cantidad;
